@@ -8,4 +8,4 @@ RUN pip3 install flask-cors
 COPY . /usr/src/app
 EXPOSE 8080
 ENTRYPOINT ["waitress-serve"]
-CMD ["main:api"]
+CMD ["--port=8080", "main:api"]
