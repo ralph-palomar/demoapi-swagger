@@ -1,11 +1,9 @@
-FROM python:latest
-RUN mkdir -p /usr/src/app
+FROM python:3.6
 WORKDIR /usr/src/app
-COPY . .
-ENV PYTHONPATH="$PYTHONPATH:/usr/src/app"
-RUN pip3 install --no-cache-dir -r requirements.txt
+COPY requirements.txt .
+RUN pip3 install -r requirements.txt
 RUN pip3 install connexion[swagger-ui]
 RUN pip3 install flask-cors
+COPY . .
 EXPOSE 8080
-ENTRYPOINT ["waitress-serve"]
-CMD ["main:api"]
+CMD ["python3", "main.py"]
