@@ -1,0 +1,97 @@
+openapi: 3.0.3
+info:
+  title: API Service
+  description: Demo API Service
+  version: 1.0.0
+  contact: 
+    name: Ralph Palomar
+    email: r.palomar.it@gmail.com
+servers: 
+- url: https://www.tes8.link/api/v1/demo
+  description: Test instance
+security: 
+- APIKey: []
+paths:
+  /resources:
+    post:
+      description: Create a new resource
+      operationId: api.impl.create_resource
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Resource'
+      responses:
+        201:
+          description: Created
+    get:
+      description: Get all resources
+      operationId: api.impl.retrieve_all_resources
+      responses:
+        200:
+          description: Success
+          content: 
+            application/json:
+              schema:
+                type: array
+                items: 
+                  $ref: '#/components/schemas/Resource'
+  /resources/{id}:
+    parameters:
+    -  in: path
+       name: id
+       schema:
+        type: integer
+       required: true
+    get:
+      description: Get a resource by id
+      operationId: api.impl.retrieve_resource_by_id
+      responses:
+        200:
+          description: Success
+          content: 
+            application/json:
+              schema:
+                type: array
+                items: 
+                  $ref: '#/components/schemas/Resource'
+    put:
+      description: Update a resource by id
+      operationId: api.impl.update_resource_by_id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Resource'
+      responses:
+        200:
+          description: Success
+    delete:
+      description: Delete a resource by id
+      operationId: api.impl.delete_resource_by_id
+      responses:
+        204:
+          description: Removed
+components:
+  securitySchemes:
+    APIKey:
+      type: apiKey
+      name: X-API-Key
+      in: header
+      x-apikeyInfoFunc: api.impl.validate_api_key
+  schemas:
+    Resource:
+      type: object
+      required: 
+        - lastname
+        - firstname
+      properties:
+        id:
+          type: integer
+        lastname: 
+          type: string
+          example: "Last name"
+        firstname: 
+          type: string
+          example: "First name"
+        
