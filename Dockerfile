@@ -5,6 +5,5 @@ RUN pip3 install -r requirements.txt
 RUN pip3 install connexion[swagger-ui]
 RUN pip3 install flask-cors
 COPY . .
-ENV API_KEY="YAxFfaB6MTaN9sXU"
 EXPOSE 8080
 CMD ["python3", "main.py"]

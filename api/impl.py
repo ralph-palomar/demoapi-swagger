@@ -1,18 +1,8 @@
 import config
-import os
 
 
 def create_resource(payload):
     pass
-
-
-def validate_api_key(api_key, required_scopes):
-    if api_key == os.environ['API_KEY']:
-        config.logger.info("Authentication successful")
-        return {}
-    else:
-        config.logger.error("Authentication failed")
-        return None
 
 
 def retrieve_all_resources():

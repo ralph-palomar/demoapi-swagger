@@ -9,8 +9,6 @@ info:
 servers: 
 - url: https://www.tes8.link/api/v1/demo
   description: Test instance
-security: 
-- APIKey: []
 paths:
   /resources:
     post:
@@ -73,12 +71,6 @@ paths:
         204:
           description: Removed
 components:
-  securitySchemes:
-    APIKey:
-      type: apiKey
-      name: X-API-Key
-      in: header
-      x-apikeyInfoFunc: api.impl.validate_api_key
   schemas:
     Resource:
       type: object
